@@ -37,7 +37,7 @@
     <li><a href="javasscript:void(0);" class="icon-save" onclick="savedata();">保存</a></li>
 </ul>
 <div style="margin-left: 80px;">
-    <h1><input type="text" id="date" value="2016-08-13" style="width:95px;border:none;"/></h1>
+    <h1><input type="text" id="date" style="width:95px;border:none;"/></h1>
 </div>
 <div id="edittable">
 </div>
@@ -49,7 +49,9 @@
         var initnow = null;
         var etable = null;
         $(function () {
-            init();
+            $('#date').val(formatDate(new Date(), 'yyyy-MM-dd'));
+            var date = GetQueryString("date");
+            init(date);
         });
         function init(qdate) {
             var endday = null;
@@ -143,6 +145,7 @@
             $.ajax({
                 type: "get",
                 async: false,
+                cache: false,
                 url: url,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
