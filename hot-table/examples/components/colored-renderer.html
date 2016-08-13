@@ -1,0 +1,15 @@
+
+<!-- Import Polymer -->
+<link rel="import" href="../../../polymer/polymer.html">
+
+<dom-module id="colored-renderer">
+  <style>
+    :host {
+      white-space: normal;
+    }
+  </style>
+  <template>
+    <template is="dom-repeat" items="{{ splitedValue }}" as="v" index-as="i"><span style$="{{computeStyle(i)}}">{{ v }}</span></template>
+  </template>
+  <script src="colored-renderer.js"></script>
+</dom-module>
