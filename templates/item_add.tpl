@@ -19,7 +19,7 @@
     <li><a href="index.php" class="icon-data-add">数据</a></li>
     <li><a href="show.php" class="icon-stats-dots">图表</a></li>
     <li class="cbp-vicurrent"><a href="cols.php" class="icon-cols-item">字典</a></li>
-    <li><a href="javasscript:void(0);" class="icon-save" onclick="savedata();"></a></li>
+    <li><a href="#" class="icon-save" onclick="savedata();"></a></li>
 </ul>
 <div id="edittable">
 </div>

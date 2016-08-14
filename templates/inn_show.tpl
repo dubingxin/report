@@ -75,6 +75,11 @@
                         var data = JSON.parse(result);
                         initdata(c, i, data);
                     }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
                 }
             });
         }

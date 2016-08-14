@@ -34,7 +34,7 @@
     <li class="cbp-vicurrent"><a href="index.php" class="icon-data-add">数据</a></li>
     <li><a href="show.php" class="icon-stats-dots">图表</a></li>
     <li><a href="cols.php" class="icon-cols-item">字典</a></li>
-    <li><a href="javasscript:void(0);" class="icon-save" onclick="savedata();">保存</a></li>
+    <li><a href="#" class="icon-save" onclick="savedata();">保存</a></li>
 </ul>
 <div style="margin-left: 80px;">
     <h1><input type="text" id="date" style="width:95px;border:none;"/></h1>
@@ -103,7 +103,7 @@
                 url: 'inn/add.php',
                 type: 'POST',
                 data: {
-                    month: formatDate(initnow, 'yyyyMM'),
+                    month: formatDate(new Date(initnow), 'yyyyMM'),
                     data: etable.getJsonData()
                 },
                 complete: function (result) {
@@ -140,7 +140,7 @@
             return result;
         }
         function loaddata(now) {
-            var url = 'inn/data/' + formatDate(now, 'yyyyMM') + '.json';
+            var url = 'inn/data/' + formatDate(new Date(now), 'yyyyMM') + '.json';
             var result = [];
             $.ajax({
                 type: "get",
@@ -197,8 +197,8 @@
             } else {
                 now = new Date();
             }
-            var d = new Date(now.getYear(), now.getMonth(), 0);
-            num = d.getDate();
+            var d = new Date(now.getYear(), now.getMonth(), 32);
+            num = 32 - d.getDate();
             return num;
         }
         function formatDate(date, format) {

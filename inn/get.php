@@ -7,7 +7,13 @@ if ($index == -1) {
     $t2 = date('Ym');
     $list1 = get_data($t1 . $_POST['item'], $t1, $index);
     $list2 = get_data($t2 . $_POST['item'], $t2, $index);
-    $result = array_merge($list1, $list2);
+    if ($list1 != null && $list2 != null) {
+        $result = array_merge($list1, $list2);
+    } else if ($list1 != null) {
+        $result = $list1;
+    } else {
+        $result = $list2;
+    }
     echo json_encode($result);
 }
 function get_dict_index($cat, $item)
@@ -29,13 +35,17 @@ function get_dict_index($cat, $item)
 function get_data($series, $month, $index)
 {
     $filename = (dirname(__FILE__)) . '/data/' . $month . '.json';
-    $list = json_decode(get_file($filename));
+    if (file_exists($filename)) {
+        $list = json_decode(get_file($filename));
+    }
     $result = array();
-    foreach ($list as $v) {
-        $item['name'] = $series;
-        $item['time'] = date("d", strtotime($v[0]));
-        $item['value'] = $v[$index + 1];
-        array_push($result, $item);
+    if (isset($list)) {
+        foreach ($list as $v) {
+            $item['name'] = $series;
+            $item['time'] = date("d", strtotime($v[0]));
+            $item['value'] = $v[$index + 1];
+            array_push($result, $item);
+        }
     }
     return $result;
 }
