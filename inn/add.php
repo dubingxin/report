@@ -7,7 +7,7 @@
  */
 $filename = $_POST['month'] . '.json';
 $myfile = fopen(dirname(__FILE__) . '/data/' . $filename, "w") or die("Unable to open file!");
-$txt = $_POST['data'];
+$txt = json_encode($_POST['data']);
 fwrite($myfile, $txt);
 fclose($myfile);
 echo 1;

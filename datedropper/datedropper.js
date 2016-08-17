@@ -1,10 +1,10 @@
-jQuery.easing._dd_easing = function(x, t, b, c, d) {
+jQuery.easing._dd_easing = function (x, t, b, c, d) {
     return -c * ((t = t / d - 1) * t * t * t - 1) + b;
 };
 
-(function($) {
-    $.fn.dateDropper = function(options) {
-        return $(this).each(function() {
+(function ($) {
+    $.fn.dateDropper = function (options) {
+        return $(this).each(function () {
             if ($(this).is('input') && $(this).attr('type') == "text") {
 
                 var
@@ -28,10 +28,10 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                 var
                     _dd_input = $(this),
                     _dd = $('#dd-w-' + _dd_id),
-                    _dd_isB = function(y) {
+                    _dd_isB = function (y) {
                         return !((y % 4) || (!(y % 100) && (y % 400)))
                     },
-                    _dd_0 = function(n) {
+                    _dd_0 = function (n) {
                         return n < 10 ? '0' + n : n
                     },
                     _dd_settings = $.extend({
@@ -69,24 +69,24 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                         usePound = true;
                     }
 
-                    var num = parseInt(col,16);
+                    var num = parseInt(col, 16);
 
                     var r = (num >> 16) + amt;
 
                     if (r > 255) r = 255;
-                    else if  (r < 0) r = 0;
+                    else if (r < 0) r = 0;
 
                     var b = ((num >> 8) & 0x00FF) + amt;
 
                     if (b > 255) b = 255;
-                    else if  (b < 0) b = 0;
+                    else if (b < 0) b = 0;
 
                     var g = (num & 0x0000FF) + amt;
 
                     if (g > 255) g = 255;
                     else if (g < 0) g = 0;
 
-                    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+                    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
 
                 };
 
@@ -102,7 +102,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                 }
 
 
-                $('<style>#dd-w-' + _dd_id + ' { font-weight: ' + _dd_settings.dropTextWeight + '; } #dd-w-' + _dd_id + ' .dd-w-c,#dd-w-' + _dd_id + ' .dd-ul li,#dd-w-' + _dd_id + ' .dd-s-b-ul ul { width:' + _dd_settings.dropWidth + 'px; } #dd-w-' + _dd_id + ' .dd-w-c{color:' + _dd_settings.dropTextColor + ';background:' + _dd_settings.dropBackgroundColor + ';border:' + _dd_settings.dropBorder + ';box-shadow:' + _dd_settings.dropShadow + ';border-radius:' + _dd_settings.dropBorderRadius + 'px}#dd-w-' + _dd_id + ' .dd-w-c,#dd-w-' + _dd_id + ' .dd-s-b{background:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + ' .dd-sun,#dd-w-' + _dd_id + ' .dd-s-b-ul li.dd-on{color:' + _dd_settings.dropPrimaryColor + '}#dd-w-' + _dd_id + ' .dd-c .dd-s,#dd-w-' + _dd_id + ' .dd-s-b-s,#dd-w-' + _dd_id + ' .dd-s-b-sub-y,#dd-w-' + _dd_id + ' .dd-sub-y{background:' + _dd_settings.dropPrimaryColor + ';color:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + ' .dd-c .dd-s a,#dd-w-' + _dd_id + ' .dd-c .dd-s a:hover{color:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + ' .dd-c:after{border-left:' + _dd_settings.dropBorder + ';border-top:' + _dd_settings.dropBorder + '}#dd-w-' + _dd_id + '.dd-bottom .dd-c:after{background:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + '.dd-top .dd-c:after{background:' + _dd_settings.dropPrimaryColor + '}#dd-w-' + _dd_id + ' .dd-n,#dd-w-' + _dd_id + ' .dd-sun{color:' + _dd_settings.dropPrimaryColor + '}#dd-w-' + _dd_id + ' .dd-sub-y .dd-n{color:' + _dd_settings.dropBackgroundColor + '} #dd-w-' + _dd_id + ' .dd-c .dd-s:hover,#dd-w-' + _dd_id + ' .dd-s-b-s:hover { background:' + _dd_color(_dd_settings.dropPrimaryColor,-20) + '; }</style>').appendTo('head');
+                $('<style>#dd-w-' + _dd_id + ' { font-weight: ' + _dd_settings.dropTextWeight + '; } #dd-w-' + _dd_id + ' .dd-w-c,#dd-w-' + _dd_id + ' .dd-ul li,#dd-w-' + _dd_id + ' .dd-s-b-ul ul { width:' + _dd_settings.dropWidth + 'px; } #dd-w-' + _dd_id + ' .dd-w-c{color:' + _dd_settings.dropTextColor + ';background:' + _dd_settings.dropBackgroundColor + ';border:' + _dd_settings.dropBorder + ';box-shadow:' + _dd_settings.dropShadow + ';border-radius:' + _dd_settings.dropBorderRadius + 'px}#dd-w-' + _dd_id + ' .dd-w-c,#dd-w-' + _dd_id + ' .dd-s-b{background:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + ' .dd-sun,#dd-w-' + _dd_id + ' .dd-s-b-ul li.dd-on{color:' + _dd_settings.dropPrimaryColor + '}#dd-w-' + _dd_id + ' .dd-c .dd-s,#dd-w-' + _dd_id + ' .dd-s-b-s,#dd-w-' + _dd_id + ' .dd-s-b-sub-y,#dd-w-' + _dd_id + ' .dd-sub-y{background:' + _dd_settings.dropPrimaryColor + ';color:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + ' .dd-c .dd-s a,#dd-w-' + _dd_id + ' .dd-c .dd-s a:hover{color:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + ' .dd-c:after{border-left:' + _dd_settings.dropBorder + ';border-top:' + _dd_settings.dropBorder + '}#dd-w-' + _dd_id + '.dd-bottom .dd-c:after{background:' + _dd_settings.dropBackgroundColor + '}#dd-w-' + _dd_id + '.dd-top .dd-c:after{background:' + _dd_settings.dropPrimaryColor + '}#dd-w-' + _dd_id + ' .dd-n,#dd-w-' + _dd_id + ' .dd-sun{color:' + _dd_settings.dropPrimaryColor + '}#dd-w-' + _dd_id + ' .dd-sub-y .dd-n{color:' + _dd_settings.dropBackgroundColor + '} #dd-w-' + _dd_id + ' .dd-c .dd-s:hover,#dd-w-' + _dd_id + ' .dd-s-b-s:hover { background:' + _dd_color(_dd_settings.dropPrimaryColor, -20) + '; }</style>').appendTo('head');
 
                 switch (_dd_settings.lang) {
 
@@ -550,10 +550,10 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                         break;
                     case 'zh':
                         var mn = [
-                            "一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"
+                            "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
                         ];
                         var dn = [
-                            "周日","周一","周二","周三","周四","周五","周六"
+                            "周日", "周一", "周二", "周三", "周四", "周五", "周六"
                         ];
                         break;
                     //english
@@ -582,13 +582,12 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                             'Saturday'
                         ];
                         break;
-                };
-
-
+                }
+                ;
 
 
                 var
-                    _dd_init = function() {
+                    _dd_init = function () {
 
                         _dd.find('.dd-d li,.dd-s-b li').show();
 
@@ -622,7 +621,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                         }
 
-                        _dd.find('.dd-d li').each(function(index, element) {
+                        _dd.find('.dd-d li').each(function (index, element) {
 
                             var
                                 _d = $(this).attr('data-id'),
@@ -636,7 +635,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                         });
 
-                        _dd.find('.dd-s-b-d li').each(function(index, element) {
+                        _dd.find('.dd-s-b-d li').each(function (index, element) {
 
                             var
                                 _d = $(this).attr('data-id'),
@@ -656,14 +655,14 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                         if (!_dd_settings.animate) {
 
-                            setTimeout(function(){
+                            setTimeout(function () {
 
                                 _dd.find('.dd-d .dd-ul').scrollLeft(_dd.find('.dd-d li[data-id="' + _dd_d + '"]').index() * _dd_settings.dropWidth);
                                 _dd.find('.dd-m .dd-ul').scrollLeft(_dd.find('.dd-m li[data-id="' + _dd_m + '"]').index() * _dd_settings.dropWidth);
                                 _dd.find('.dd-y .dd-ul').scrollLeft(_dd.find('.dd-y li[data-id="' + _dd_y + '"]').index() * _dd_settings.dropWidth);
                                 _dd.find('.dd-sub-y .dd-ul').scrollLeft(_dd.find('.dd-sub-y li[data-id="' + _dd_sub_y + '"]').index() * _dd_settings.dropWidth);
 
-                            },1);
+                            }, 1);
 
                             if (_dd.hasClass('dd-init')) {
 
@@ -679,20 +678,19 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                                     scrollLeft: _dd.find('.dd-m li[data-id="' + _dd_m + '"]').index() * _dd_settings.dropWidth
                                 }, 1200, 'swing');
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     _dd.find('.dd-d .dd-ul').animate({
                                         scrollLeft: _dd.find('.dd-d li[data-id="' + _dd_d + '"]').index() * _dd_settings.dropWidth
                                     }, 1200, 'swing');
-                                    setTimeout(function() {
+                                    setTimeout(function () {
                                         _dd.find('.dd-y .dd-ul').animate({
                                             scrollLeft: _dd.find('.dd-y li[data-id="' + _dd_y + '"]').index() * _dd_settings.dropWidth
-                                        }, 1200, 'swing',function(){
+                                        }, 1200, 'swing', function () {
                                             _dd_init_state = true;
                                             _dd.removeClass('dd-init');
                                         });
                                     }, 200);
                                 }, 400);
-
 
 
                             } else {
@@ -717,7 +715,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
 
                     },
-                    _dd_placement = function() {
+                    _dd_placement = function () {
 
                         /*
 
@@ -748,15 +746,15 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
 
                     },
-                    _dd_alert = function() {
+                    _dd_alert = function () {
 
                         _dd.find('.dd-c').addClass('dd-alert').removeClass('dd-' + _dd_settings.init_animation);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             _dd.find('.dd-c').removeClass('dd-alert');
                         }, 500);
 
                     },
-                    _dd_submit = function() {
+                    _dd_submit = function () {
 
                         if (_dd_settings.lock) {
 
@@ -801,16 +799,17 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                             .addClass('dd-fadeout')
                             .removeClass('dd-' + _dd_settings.init_animation);
 
-                        _dd_event = setTimeout(function() {
+                        _dd_event = setTimeout(function () {
                             _dd.hide()
                             _dd.find('.dd-c').removeClass('dd-fadeout');
                         }, 400);
 
                         _dd_input.change();
                         console.log(str);
+                        setstorage('date', str);
                         init(str);
                     },
-                    _dd_calculate = function(y) {
+                    _dd_calculate = function (y) {
 
                         _dd.find('.dd-s-b-s-y ul').empty();
 
@@ -836,9 +835,9 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                         _dd.find('.dd-sub-y .dd-ul')
                             .scrollLeft(_dd.find('.dd-sub-y li[data-id="' + _dd_sub_y + '"]').index() * _dd_settings.dropWidth);
 
-                        _dd.find('.dd-s-b-s-y li').each(function(index, element) {
+                        _dd.find('.dd-s-b-s-y li').each(function (index, element) {
 
-                            $(this).click(function() {
+                            $(this).click(function () {
 
                                 _dd.find('.dd-s-b-s-y li').removeClass('dd-on');
                                 $(this).addClass('dd-on');
@@ -855,9 +854,9 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                         });
 
                     },
-                    _dd_construct = function() {
+                    _dd_construct = function () {
 
-                        _dd.find('.dd-s-b').each(function(index, element) {
+                        _dd.find('.dd-s-b').each(function (index, element) {
 
                             var
                                 _dd_el = $(this),
@@ -891,7 +890,6 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                                 }
 
 
-
                             }
 
                             if (_dd_el.hasClass('dd-s-b-y')) {
@@ -904,7 +902,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                             _dd_el.find('ul').append('<div class="dd-clear"></div>');
 
-                            _dd_el.find('ul li').click(function() {
+                            _dd_el.find('ul li').click(function () {
 
                                 if (_dd_el.hasClass('dd-s-b-m') || _dd_el.hasClass('dd-s-b-d')) {
 
@@ -932,7 +930,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                                 top = 0,
                                 scroll = false;
 
-                            _dd_el.on('mousewheel DOMMouseScroll', function(e) {
+                            _dd_el.on('mousewheel DOMMouseScroll', function (e) {
 
                                 scroll = true;
 
@@ -948,14 +946,14 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                                     scrollTop: top
 
-                                }, 600, '_dd_easing', function() {
+                                }, 600, '_dd_easing', function () {
 
                                     scroll = false;
 
                                 });
 
 
-                            }).on('scroll', function() {
+                            }).on('scroll', function () {
 
                                 if (!scroll) top = _dd_el.scrollTop();
 
@@ -964,7 +962,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                         });
 
 
-                        _dd.find('.dd-b').each(function(index, element) {
+                        _dd.find('.dd-b').each(function (index, element) {
 
                             var
                                 _dd_el = $(this),
@@ -977,7 +975,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                                     _dd_el.find('ul').append('<li data-id="' + (i + 1) + '">' + mn[i].substr(0, 3) + '</li>');
                                 }
 
-                                _dd_el.find('li').click(function() {
+                                _dd_el.find('li').click(function () {
                                     if (_dd_settings.format == 'm' || _dd_settings.format == 'n' || _dd_settings.format == 'F' || _dd_settings.format == 'M')
                                         return false;
                                     _dd.find('.dd-s-b-m').addClass('dd-show');
@@ -990,7 +988,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                                 for (var i = 1; i <= 31; i++) {
                                     _dd_el.find('ul').append('<li data-id="' + i + '"><strong>' + _dd_0(i) + '</strong><br><span></span></li>');
                                 }
-                                _dd_el.find('li').click(function() {
+                                _dd_el.find('li').click(function () {
                                     _dd.find('.dd-s-b-d').addClass('dd-show');
                                 });
                             }
@@ -1006,7 +1004,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                                 }
 
-                                _dd_el.find('li').click(function() {
+                                _dd_el.find('li').click(function () {
                                     if (_dd_settings.format == 'Y')
                                         return false;
                                     _dd.find('.dd-s-b-y').addClass('dd-show');
@@ -1030,7 +1028,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                             ////////////////////// NAV ///////////////////////
 
 
-                            _dd_el.find('.dd-n').click(function() {
+                            _dd_el.find('.dd-n').click(function () {
 
                                 clearInterval(_te_event);
 
@@ -1043,7 +1041,6 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                                 if (_dd_el.hasClass('dd-m')) x = _dd_m;
                                 if (_dd_el.hasClass('dd-d')) x = _dd_d;
                                 if (_dd_el.hasClass('dd-sub-y')) x = _dd_sub_y;
-
 
 
                                 if ($(this).hasClass('dd-n-left')) {
@@ -1077,7 +1074,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                             });
 
-                            var _detect = function() {
+                            var _detect = function () {
 
                                 if (_dd_init_state) {
 
@@ -1093,7 +1090,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                             };
 
-                            _dd_el.find('.dd-ul').on('scroll', function() {
+                            _dd_el.find('.dd-ul').on('scroll', function () {
 
                                 _detect();
 
@@ -1101,17 +1098,17 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                             var _dd_user = false;
 
-                            _dd_el.find('.dd-ul').on('mousedown touchstart', function() {
+                            _dd_el.find('.dd-ul').on('mousedown touchstart', function () {
 
-                                if(!_dd_user) _dd_user = true;
+                                if (!_dd_user) _dd_user = true;
                                 clearInterval(_te_event);
 
-                                $(window).on('mouseup touchend touchmove', function() {
+                                $(window).on('mouseup touchend touchmove', function () {
 
-                                    if(_dd_user) {
+                                    if (_dd_user) {
 
                                         clearInterval(_te_event);
-                                        _te_event = setTimeout(function() {
+                                        _te_event = setTimeout(function () {
 
                                             _dd_init();
                                             _dd_user = false;
@@ -1129,7 +1126,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                         });
 
-                        _dd.find('.dd-b li').click(function() {
+                        _dd.find('.dd-b li').click(function () {
 
                             if (_dd_settings.format == 'm' || _dd_settings.format == 'n' || _dd_settings.format == 'F' || _dd_settings.format == 'M' || _dd_settings.format == 'Y')
                                 return false;
@@ -1138,25 +1135,25 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                         });
 
-                        _dd.find('.dd-s-b-s').click(function() {
+                        _dd.find('.dd-s-b-s').click(function () {
 
                             _dd.find('.dd-s-b').removeClass('dd-show');
                             _dd.find('.dd-s-b-s').hide();
 
                         });
 
-                        _dd.find('.dd-s').click(function() {
+                        _dd.find('.dd-s').click(function () {
 
                             _dd_submit();
 
                         });
-                        _dd.find('.dd-o').click(function() {
+                        _dd.find('.dd-o').click(function () {
 
                             _dd.find('.dd-c')
                                 .addClass('dd-fadeout')
                                 .removeClass('dd-' + _dd_settings.init_animation);
 
-                            _dd_event = setTimeout(function() {
+                            _dd_event = setTimeout(function () {
                                 _dd.hide()
                                 _dd.find('.dd-c').removeClass('dd-fadeout');
                             }, 400);
@@ -1166,7 +1163,7 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
                         _dd_init();
 
                     },
-                    _dd_set = function() {
+                    _dd_set = function () {
 
                         clearInterval(_dd_event);
 
@@ -1204,17 +1201,17 @@ jQuery.easing._dd_easing = function(x, t, b, c, d) {
 
                     };
 
-                _dd_input.click(function() {
+                _dd_input.click(function () {
 
                     _dd_set();
 
                 });
 
-                _dd_input.bind('focusin focus', function(e){
+                _dd_input.bind('focusin focus', function (e) {
                     e.preventDefault();
                 })
 
-                $(window).resize(function() {
+                $(window).resize(function () {
 
                     _dd_placement();
 

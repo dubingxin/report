@@ -1,10 +1,10 @@
 {config_load file="test.conf" section="setup"}
 {include file="header.tpl"}
-<script src="editTable/jquery.edittable.min.js" type="text/javascript"></script>
 <script src="inn/js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="inn/js/handsontable.full.js"></script>
+<link rel="stylesheet" type="text/css" href="inn/css/handsontable.full.css">
 <script src="datedropper/datedropper.js" type="text/javascript"></script>
 <link rel="stylesheet" href="datedropper/datedropper.css"/>
-<link rel="stylesheet" href="editTable/jquery.edittable.css">
 <link rel="stylesheet" href="inn/css/menu.css">
 <style>
     i {
@@ -16,10 +16,6 @@
         color: #fff;
         position: fixed;
         bottom: 0px;
-    }
-
-    table.inputtable {
-        width: 170%;
     }
 
     h1 {
@@ -38,8 +34,7 @@
 </ul>
 <div style="margin-left: 80px;">
     <h1><input type="text" id="date" style="width:95px;border:none;"/></h1>
-</div>
-<div id="edittable">
+    <div id="etable"></div>
 </div>
 {literal}
     <script>
@@ -47,11 +42,16 @@
     </script>
     <script>
         var initnow = null;
-        var etable = null;
+        var jsondata = null;
         $(function () {
-            $('#date').val(formatDate(new Date(), 'yyyy-MM-dd'));
-            var date = GetQueryString("date");
-            init(date);
+            var date = getstorage("date");
+            if (date) {
+                $('#date').val(formatDate(date, 'yyyy-MM-dd'));
+                init(date);
+            }
+            else {
+                $('#date').val(formatDate(new Date(), 'yyyy-MM-dd'));
+            }
         });
         function init(qdate) {
             var endday = null;
@@ -73,28 +73,49 @@
             initnow = now;
 
             var colsdata = loadcols();
-            var jsondata = loaddata(now);
+            jsondata = loaddata(now);
             if (jsondata.length == 0) {
                 while (now <= endday) {
-                    var bidata = [];
-                    bidata.push(now);
-                    jsondata.push(bidata);
+                    var emptyata = [];
+                    emptyata.push(now);
+                    jsondata.push(emptyata);
+                    for (var i = 0; i < colsdata.length - 1; i++) {
+                        emptyata.push('');
+                    }
                     now = addDate(now, 1);
                 }
             }
-            $('#edittable').empty();
-            etable = $("#edittable").editTable({
-                data: jsondata,
-                headerCols: colsdata,
-                maxRows: DayNumOfMonth(initnow)
-            });
-            var $inp = $('input:text');
-            $inp.bind('keydown', function (e) {
-                var key = e.which;
-                if (key == 13) {
-                    e.preventDefault();
-                    var nxtIdx = $inp.index(this) + 1;
-                    $(":input:text:eq(" + nxtIdx + ")").focus();
+            inittable('etable', colsdata, jsondata);
+        }
+        //呈现
+        function inittable(ele_id, colsdata, tabledata) {
+            $('#' + ele_id).empty();
+            var container = document.getElementById(ele_id);
+            var hot = new Handsontable(container, {
+                data: tabledata,
+                minSpareCols: 1,
+                minSpareRows: 1,
+                rowHeaders: false,
+                colHeaders: true,
+                fixedColumnsLeft: 1,
+                contextMenu: false,
+                colHeaders: function (col) {
+                    var txt = null;
+                    if (col == 0) {
+                        txt = colsdata[col].cols;
+                    } else {
+                        txt = "<font color=\"blue\">" + colsdata[col].site + "</font><br/>" + colsdata[col].cols;
+                    }
+                    return txt;
+                },
+                afterChange: function () {
+                },
+                cells: function (row, col, prop) {
+                    var cellProperties = {};
+                    if (col === 0) {
+                        cellProperties.readOnly = true;
+                    }
+                    return cellProperties;
                 }
             });
         }
@@ -104,21 +125,27 @@
                 type: 'POST',
                 data: {
                     month: formatDate(new Date(initnow), 'yyyyMM'),
-                    data: etable.getJsonData()
+                    data: jsondata
                 },
-                complete: function (result) {
-                    if (result.responseText == 1) {
+                success: function (result) {
+                    if (result == 1) {
                         alert('提交成功!');
                     }
                     else {
                         alert('提交失败!' + result.responseText);
                     }
+                },
+                error: function (err) {
+                    alert(err);
                 }
             });
         }
         function loadcols() {
             var url = 'item/data/dict.json';
-            var result = ['日期'];
+            var result = [];
+            var dh = new Object();
+            dh.cols = '日期';
+            result.push(dh);
             $.ajax({
                 type: "get",
                 async: false,
@@ -128,13 +155,14 @@
                 success: function (data) {
                     var arr = data;
                     $.each(arr, function (i, item) {
-                        var col = [];
-                        col.push('<font color=\"blue\">', item[0], '</font><br/>', item[1]);
-                        result.push(col.join(''));
+                        var h = new Object();
+                        h.site = item[0];
+                        h.cols = item[1];
+                        result.push(h);
                     });
                 },
                 error: function (err) {
-                    //alert(err);
+                    alert(err);
                 }
             });
             return result;
